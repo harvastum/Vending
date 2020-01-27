@@ -11,19 +11,12 @@ public:
 	void draw();
 	bool accepted_coin(Coin c);
 	void return_coins();
-	void add_coin(double coin);
+	void add_coin(long double coin);
+	void return_change(long double price);
 
-	vector<Coin> coins  
-	{	
-		Coin(0.1,40),
-		Coin(0.2,40),
-		Coin(0.5,40),
-		Coin(1,40),
-		Coin(2,40),
-		Coin(5,40)
-	};
-	vector<Coin> inserted_coins;
-	vector<Product> products;
-	double credit = 0;
+	vector<Coin> coins;
+	vector<Coin> inserted_coins{};
+	vector<Product> products{};
+	long double credit = 0;
 };
 

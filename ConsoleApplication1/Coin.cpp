@@ -2,7 +2,16 @@
 #include "Coin.h"
 #include <iostream>
 
-Coin::Coin(double value, int amount) : _amount(amount), _value(value)
+
+class AmountError : public std::exception {
+public:
+	const char * message() const throw()
+	{
+		return "Not enough coins!!!\n";
+	}
+}; 
+
+Coin::Coin(long double value, int amount) : amount(amount), value(value)
 {
 }
 
@@ -12,6 +21,20 @@ Coin::~Coin()
 
 std::ostream& operator<<(std::ostream& stream, const Coin& c)
 {
-	stream << c._value;
+	stream << c.value;
 	return stream;
+}
+
+Coin& Coin::operator--()
+{
+	if (this->amount == 0) throw new AmountError;
+	this->amount--;
+	return *this;
+}
+
+Coin Coin::operator--(int)
+{
+	Coin temp(*this);
+	--(*this);
+	return temp;
 }
